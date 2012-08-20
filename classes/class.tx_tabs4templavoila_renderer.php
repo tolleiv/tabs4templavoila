@@ -20,4 +20,31 @@
 *  GNU General Public License for more details.
 *
 *  This copyright notice MUST APPEAR in all copies of the script!
-***************************************************************/class tx_tabs4templavoila_renderer {	public function composeSubelements($cells, $elementContentTreeArr, &$output, &$alreadyRendered, $mod1) {			if ($elementContentTreeArr['el']['table'] != 'pages') {			return;		}		$headerCells = $contentCells = array();		foreach ($cells as $cell) {			$headerCells[] = vsprintf('<li class="bgColor6 tpm-title-cell"><a href="#%1$s">%3$s</a></li>', $cell);			$contentCells[] = vsprintf('<div %2$s class="tpm-content-cell">%5$s</div>', $cell);		}		$output = '			<div class="tpm-subelement-table tabs">				<ul>' . (count($headerCells) ? implode('', $headerCells) : '') . '</ul>				' .  (count($contentCells) ? implode('', $contentCells) : '' ) . '			</div>		';				$alreadyRendered = TRUE;	}}?>
+***************************************************************/
+
+class tx_tabs4templavoila_renderer {
+
+	public function composeSubelements($cells, $elementContentTreeArr, &$output, &$alreadyRendered, $mod1) {
+	
+		if ($elementContentTreeArr['el']['table'] != 'pages') {
+			return;
+		}
+
+		$headerCells = $contentCells = array();
+		foreach ($cells as $cell) {
+			$headerCells[] = vsprintf('<li class="bgColor6 tpm-title-cell"><a href="#%1$s">%3$s</a></li>', $cell);
+			$contentCells[] = vsprintf('<div %2$s class="tpm-content-cell">%5$s</div>', $cell);
+		}
+		$output = '
+			<div class="tpm-subelement-table tabs">
+				<ul>' . (count($headerCells) ? implode('', $headerCells) : '') . '</ul>
+				' .  (count($contentCells) ? implode('', $contentCells) : '' ) . '
+			</div>
+		';
+		
+		$alreadyRendered = TRUE;
+	}
+
+}
+
+?>
